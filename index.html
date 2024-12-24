@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Mama</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            color: white;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            font-size: 18px;
+            background: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .popup-text {
+            font-size: 32px;
+            animation: colorChange 2s infinite;
+        }
+
+        .birthday-wish {
+            font-size: 40px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, #ff0000, #ff69b4, #ff1493, #ff0000);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientMove 3s infinite;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes colorChange {
+            0% { color: #ff0000; }
+            25% { color: #00ff00; }
+            50% { color: #0000ff; }
+            75% { color: #ffff00; }
+            100% { color: #ff0000; }
+        }
+
+        .gift-box {
+            width: 300px; /* Increased width */
+            height: 200px;
+            background: #ff69b4;
+            margin: 20px auto;
+            position: relative;
+            animation: giftShake 1s infinite;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+            margin-bottom: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes giftShake {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        .flower-container {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            width: 100%;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .rose {
+            display: inline-block;
+            position: relative;
+            animation: flowerPop 1s;
+            margin: 0 10px;
+        }
+
+        .rose::before { /* Stem */
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            width: 4px;
+            height: 60px;
+            background: #228B22;
+            transform: translateX(-50%);
+        }
+
+        .rose-bloom {
+            font-size: 60px; /* Adjusted size */
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes flowerPop {
+            0% { transform: scale(0); }
+            70% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .message {
+            max-width: 600px;
+            margin: 20px auto;
+            line-height: 1.6;
+            animation: fadeIn 2s;
+            margin-top: 50px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .firework {
+            position: fixed;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            animation: firework 2s ease-out;
+            z-index: 0;
+        }
+
+        @keyframes firework {
+            0% { 
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            50% { 
+                transform: translateY(-500px) scale(0.5);
+                opacity: 0.5;
+            }
+            100% { 
+                transform: translate(var(--spread-x), -1000px) scale(0);
+                opacity: 0;
+            }
+        }
+
+        .falling-flower {
+            position: fixed;
+            font-size: 20px;
+            animation: falling 5s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes falling {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .sparkle {
+            position: fixed;
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            background: white;
+            animation: sparkle 1.5s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes sparkle {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(0); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Step 1: Initial Button -->
+        <div id="step1">
+            <button class="btn" onclick="showStep2()">Click Button</button>
+        </div>
+
+        <!-- Step 2: For Mama -->
+        <div id="step2" class="hidden">
+            <h1 class="popup-text">Untuk Mama</h1>
+            <button class="btn" onclick="showStep3()">Click Button</button>
+        </div>
+
+        <!-- Step 3: Flowers and Message -->
+        <div id="step3" class="hidden">
+            <h1 class="birthday-wish">Yaumul Milad, Barakallah Fii Umrik Mama</h1>
+            <div class="gift-box">
+                <div class="flower-container">
+                    <div class="rose">
+                        <div class="rose-bloom">🌹</div>
+                    </div>
+                    <div class="rose">
+                        <div class="rose-bloom">🌹</div>
+                    </div>
+                    <div class="rose">
+                        <div class="rose-bloom">🌹</div>
+                    </div>
+                </div>
+            </div>
+            <div class="message">
+                Semoga mama selalu diberkahi rejekinya ya terutama untuk keberkahan kesehatan mama. Terima Kasih sudah menjadi mama yang baik untuk aku, adik-adik ku dan untuk abah. Dan terima kasih sudah banyak menasehati ku selama ini. Maafin aku ya ma kalau aku udah banyak salah mama selama ini. Walaupun sekarang mungkin aku masih mengulangi kesalahan ku lagi dan lagi, tapi jangan pernah lelah untuk selalu ingetin aku ya ma kalau aku selalu melakukan kesalahan. I love you mama.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showStep2() {
+            document.getElementById('step1').classList.add('hidden');
+            document.getElementById('step2').classList.remove('hidden');
+        }
+
+        function showStep3() {
+            document.getElementById('step2').classList.add('hidden');
+            document.getElementById('step3').classList.remove('hidden');
+            createFireworks();
+            createFallingFlowers();
+            createSparkles();
+        }
+
+        function createFireworks() {
+            setInterval(() => {
+                for(let i = 0; i < 3; i++) {
+                    const firework = document.createElement('div');
+                    firework.className = 'firework';
+                    firework.style.left = Math.random() * window.innerWidth + 'px';
+                    firework.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                    firework.style.setProperty('--spread-x', `${(Math.random() - 0.5) * 500}px`);
+                    document.body.appendChild(firework);
+
+                    setTimeout(() => {
+                        firework.remove();
+                    }, 2000);
+                }
+            }, 200);
+        }
+
+        function createFallingFlowers() {
+            const flowers = ['🌸', '🌺', '🌼', '🌻', '💐'];
+            setInterval(() => {
+                const flower = document.createElement('div');
+                flower.className = 'falling-flower';
+                flower.style.left = Math.random() * window.innerWidth + 'px';
+                flower.textContent = flowers[Math.floor(Math.random() * flowers.length)];
+                document.body.appendChild(flower);
+
+                setTimeout(() => {
+                    flower.remove();
+                }, 5000);
+            }, 300);
+        }
+
+        function createSparkles() {
+            setInterval(() => {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = Math.random() * window.innerWidth + 'px';
+                sparkle.style.top = Math.random() * window.innerHeight + 'px';
+                document.body.appendChild(sparkle);
+
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 1500);
+            }, 50);
+        }
+    </script>
+</body>
+</html>
